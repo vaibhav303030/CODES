@@ -1,0 +1,119 @@
+
+#include <iostream>
+using namespace std;
+class emp{
+    public:
+    int id;
+    int salary;
+    emp *next;
+    void accept();
+    void display();
+    void search();
+    void del();
+    void update();
+    
+}
+*start=NULL;
+void emp::accept(){    //accepting the id end salary of the employee
+    emp *newnode=new emp;
+    emp *temp;
+    cout<<"enter the emp id ";
+    cin>>newnode->id;
+    cout<<"enter the salary";
+    cin>>newnode->salary;
+    newnode->next=NULL;
+    if(start==NULL){
+        start=newnode;
+    }
+    else{
+       temp=start;
+       while(temp->next!=NULL){
+           temp=temp->next;
+       }
+       temp->next=newnode;
+    }
+}
+void emp::display(){    //display the data
+    if(start==NULL){
+        cout<<"list is empty";
+    }
+    else{
+        emp *temp;
+        temp=start;
+        while(temp!=NULL){
+           
+            cout<<temp->id<<"\t"<<temp->salary<<"\n";
+             temp=temp->next;
+        }
+    }
+}
+void emp::search(){
+    emp *temp;             //searching the data
+    int data;
+    cout<<"enter the data you want ot search";
+    cin>>data;
+    temp=start;
+    int f=0;
+    while(temp!=NULL){
+        if(temp->id==data){
+            f=1;
+        
+            return;
+        }
+        else{
+            temp=temp->next;
+        }
+        if(f==1){
+                cout<<"data is found in the list";
+        }
+        else{
+            cout<<"not found";
+        }
+    }
+}
+void emp::del(){   //deleting the data
+    emp *temp;
+    emp *pre=NULL;
+    temp=start;
+    int data;
+    cout<<"entrer the id you want to delete";
+    cin>>data;
+    while(temp!=NULL && temp->id !=data){
+       
+            pre=temp;
+            temp=temp->next;
+            
+        }
+       pre->next=temp->next; 
+    }
+    
+void emp::update(){
+    int data;
+    cout<<"enter the data you want to update";
+    cin>>data;
+    
+}
+int main() {
+   emp p;
+   int ch;
+   do{
+       cout<<"1.Accept\n2.Display\n3.Search4.Del\n"<<endl;
+       cout<<"Enter th choice";
+       cin>>ch;
+       switch(ch){
+           case 1:
+           p.accept();
+           break;
+           case 2:
+           p.display();
+           break;
+           case 3:
+           p.search();
+           break;
+           case 4:
+           p.del();
+           break;
+       }
+   }while(ch!=5);
+ return 0;
+}
